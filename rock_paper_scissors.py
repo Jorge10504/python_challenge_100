@@ -48,6 +48,6 @@ else:
   elif computer_choice > user_choice: 
     print("You lose!")
   elif user_choice > computer_choice:
-    print("Yoi win!")
+    print("You win!")
   elif computer_choice == user_choice:
     print("it's a draw!")
