@@ -1,4 +1,4 @@
-import random
+from random import randint
 
 logo = """
   _   _                 _                  ____                     
@@ -8,63 +8,47 @@ logo = """
  |_| \_|\__,_|_| |_| |_|_.__/ \___|_|     \____|\__,_|\___||___/___/
 """
 
-numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100]
+EASY_LEVEL_TURNS = 10
+HARD_LEVEL_TURNS = 5
 
-random_number = random.choice(numbers)
+def check_answer(guess, answer, turns):
+  """Checks answer against guess and returns number of turns remaining"""
+  if guess > answer:
+    print("Too high.")
+    return turns - 1
+  elif guess < answer:
+    print("Too low.")
+    return turns -1
+  else: 
+    print(f"You got it! The answer was {answer}.")
 
-def hard_mode():
-  lives = 5
+def set_difficulty():
+  level = input("Choose the difficulty. Type 'easy' or 'hard': ").lower()
+  if level == "easy":
+    return EASY_LEVEL_TURNS
+  else:
+    return HARD_LEVEL_TURNS
   
-  print("You have 5 attempts to guess the number")
-  user_guess = int(input("Make a guess: "))
+def game():
+  print(logo)
+  print("Welcome to the guessing game!")
+  print("I'm thinking of a number between 1 and 100.")
+  answer = randint(1,100)
   
-  while lives > 0:
-    if user_guess == random_number:
-      print(f"You guessed it! The number was {random_number}")
-      break
-    elif user_guess > random_number:
-      print("Too high.")
-      lives -= 1
-      print(f"You have {lives} live(s) left")
-    elif user_guess < random_number:
-      print("Too low.")
-      lives -= 1
-      print(f"You have {lives} live(s) left")
+  print(f"Psst, the answer is {answer}")
+  turns = set_difficulty()
+  
+  guess = 0
+  while guess != answer:
+    print(f"You have {turns} attempts remaining to guess the number. ")
     
-    user_guess = int(input("Make another guess: "))
+    guess = int(input("Make a guess: "))
+    turns = check_answer(guess, answer, turns)
     
-    if lives <= 0:
-      print(f"You lost, the correct number was: {random_number}")
+    if turns == 0:
+      print("You've ran out of guesses. You lose!")
+      return
+    elif guess != answer:
+      print("Try again.")
 
-def easy_mode():
-  lives = 10
-  
-  print("You have 10 attempts to guess the number")
-  user_guess = int(input("Make a guess: "))
-  
-  while lives > 0:
-    if user_guess == random_number:
-      print(f"You guessed it! The number was {random_number}")
-      break
-    elif user_guess > random_number:
-      print("Too high.")
-      lives -= 1
-      print(f"You have {lives} live(s) left")
-    elif user_guess < random_number:
-      print("Too low.")
-      lives -= 1
-      print(f"You have {lives} live(s) left")
-    user_guess = int(input("Make another guess: "))
-    
-    if lives <= 0:
-      print(f"You lost, the correct number was: {random_number}")
-    
-print(logo)
-print("Welcome to the guessing number game!")
-print("I'm thinking of a number between 1 and 100")
-difficulty = input("Choose the difficulty. Type 'easy' or 'hard': ").lower()
-    
-if difficulty == "easy":
-  easy_mode()
-elif difficulty == "hard":
-  hard_mode()
+game()
