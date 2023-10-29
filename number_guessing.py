@@ -63,7 +63,6 @@ print(logo)
 print("Welcome to the guessing number game!")
 print("I'm thinking of a number between 1 and 100")
 difficulty = input("Choose the difficulty. Type 'easy' or 'hard': ").lower()
-print(f"Psst, the correct number is {random_number}")
     
 if difficulty == "easy":
   easy_mode()
