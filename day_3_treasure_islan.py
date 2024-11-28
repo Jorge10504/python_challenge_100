@@ -20,22 +20,26 @@ ____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
 /______/______/______/______/______/______/______/______/______/______/_____ /
 *******************************************************************************
 ''')
-print("Welcome to Treasure Island.")
-print("Your mission is to find the treasure.") 
 
-crossroad = input("You are at a cross road. Where do you go? Type 'left' or right\n'")
+print("Welcome to the Treasure Island Game!\nYour mission is to find the treasure.")
+choice = input("You are at a cross road. Where do you want to go? Type 'left' or 'right.'")
 
-if crossroad == "left":
-    lake = input("You come to a lake. There is an island in the middle of the lake. Do you wait for a boat or swim? Type 'wait' to wait for a boat. Type 'swim' to swim across\n")
-    if lake == "wait":
-        island = input("You arrive at the island unharmed. There is a house with three doors, one yellow, one red, and one blue. Which one do you choose?\n")
-        if island == "yellow":
-            print("You have found the treasure!")
-        elif island == "blue":
-            print("You have found a room full of beasts. Game over!")
-        elif island == "red":
-            print("You have found a room full of fire. Game over!")
-    else:
-        print("Game over!")
-else:
+if choice == "right":
     print("Game Over!")
+elif choice == "left":
+    choice = input(
+        "You have come to a lake. There is an island in the middle of the lake. "
+        "Type 'wait' to wait for a boat or 'swim' to swim to the island.\n"
+    )
+    if choice == "wait":
+        print("Game Over!")
+    elif choice == "swim":
+        choice = input(
+            "You arrive at the island unharmed. "
+            "There is a house with three doors. One is red, one yellow and one blue. "
+            "Which color do you choose?\n"
+        )
+        if choice == "red":
+            print("Congratulations, you have found the treasure!")
+        else:
+            print("Incorrect! Game Over.")
