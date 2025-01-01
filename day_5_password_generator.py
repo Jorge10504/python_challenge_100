@@ -15,17 +15,14 @@ psw_order = input(f"Would you like to shuffle your password? Y/N\n")
 # Sequenced Order - Easy Level
 new_password = ""
 
-for letter in range(1, nr_letters + 1):
-    choice = random.choice(letters)
-    new_password += choice
+for letter in range(0, nr_letters):
+    new_password += random.choice(letters)
 
-for symbol in range(1, nr_symbols + 1):
-    choice = random.choice(symbols)
-    new_password += choice
+for symbol in range(0, nr_symbols):
+    new_password += random.choice(symbols)
 
-for number in range(1, nr_numbers + 1):
-    choice = random.choice(numbers)
-    new_password += choice
+for number in range(0, nr_numbers):
+    new_password += random.choice(numbers)
 
 # Random Order
 if psw_order == "Y":
